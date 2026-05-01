@@ -1,4 +1,5 @@
 [default.extend-words]
+rcli = "rcli"
 
 [files]
 extend-exclude = ["README.md", "CHANGELOG.md", "notebooks/*"]
