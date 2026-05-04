@@ -1,6 +1,6 @@
 use anyhow::Result;
 use clap::Parser;
-use rcli::{Opts, SubCommand, process_csv};
+use rcli::{Opts, SubCommand, process_csv, process_gen_passwd};
 fn main() -> Result<()> {
     let opts = Opts::parse();
 
@@ -18,6 +18,25 @@ fn main() -> Result<()> {
                 opts.delimiter,
                 output,
                 opts.format,
+            )?;
+        }
+        SubCommand::Passwd(opts) => {
+            opts.validate()?;
+
+            let uppercase = !opts.no_uppercase;
+            let lowercase = !opts.no_lowercase;
+            let numeric = !opts.no_numeric;
+            let symbolic = !opts.no_symbolic;
+            let output = opts.output.as_deref();
+
+            process_gen_passwd(
+                opts.length,
+                uppercase,
+                lowercase,
+                numeric,
+                symbolic,
+                opts.batch_count,
+                output,
             )?;
         }
     }

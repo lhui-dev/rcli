@@ -1,6 +1,10 @@
 mod csv;
+mod passwd;
 
-pub use self::csv::{CsvOpts, OutputFormat};
+pub use self::{
+    csv::{CsvOpts, OutputFormat},
+    passwd::GenPasswdOpts,
+};
 use clap::Parser;
 
 #[derive(Debug, Parser)]
@@ -17,4 +21,7 @@ pub enum SubCommand {
         about = "Show a CSV record, or convert CSV to other formats"
     )]
     Csv(CsvOpts),
+
+    #[command(name = "passwd", about = "Generate a passwd")]
+    Passwd(GenPasswdOpts),
 }
