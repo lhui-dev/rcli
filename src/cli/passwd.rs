@@ -81,16 +81,16 @@ impl GenPasswdOpts {
         }
 
         // 批量生成数量至少为1
-        if self.batch_count <= 0 {
+        if self.batch_count == 0 {
             anyhow::bail!("Batch count must be greater than 0");
         }
 
         if let Some(output) = &self.output {
             let path = std::path::Path::new(output);
-            if let Some(parent) = path.parent() {
-                if !parent.exists() {
-                    anyhow::bail!("Output directory {:?} does not exist", parent);
-                }
+            if let Some(parent) = path.parent()
+                && !parent.exists()
+            {
+                anyhow::bail!("Output directory {:?} does not exist", parent);
             }
 
             if path.is_dir() {
