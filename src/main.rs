@@ -1,7 +1,11 @@
 use anyhow::Result;
 use clap::Parser;
-use rcli::{Opts, SubCommand, process_csv, process_gen_passwd};
-fn main() -> Result<()> {
+use rcli::{HttpSubCommand, Opts, SubCommand, process_csv, process_gen_passwd, process_http_serve};
+
+#[tokio::main]
+async fn main() -> Result<()> {
+    tracing_subscriber::fmt::init();
+
     let opts = Opts::parse();
 
     match opts.cmd {
@@ -39,6 +43,11 @@ fn main() -> Result<()> {
                 output,
             )?;
         }
+        SubCommand::Http(sub_command) => match sub_command {
+            HttpSubCommand::Serve(opts) => {
+                process_http_serve(opts.dir, &opts.ip, opts.port).await?;
+            }
+        },
     }
     Ok(())
 }
