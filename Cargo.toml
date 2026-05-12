@@ -5,17 +5,24 @@ edition = "2024"
 authors = ["lsh <lhui.dev@gmail.com>"]
 description = "Rust code template."
 readme = "README.md"
-repository = "https://github.com/lhui-dev/rcli"
 license = "MIT"
 keywords = ["template", "rust", "project"]
 categories = ["development-tools"]
 
 [dependencies]
 anyhow = "1.0.102"
+axum = { version = "0.8.9", features = ["http2", "query", "tracing"] }
 clap = { version = "4.6.0", features = ["derive"] }
 csv = "1.4.0"
 rand = { version = "0.10.1", features = ["thread_rng"] }
 serde = { version = "1.0.228", features = ["derive"] }
 serde_json = "1.0.149"
 tempfile = "3.27.0"
+tokio = { version = "1.52.1", features = ["rt", "net", "rt-multi-thread", "macros", "fs", "signal"] }
+tracing = "0.1.44"
+tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
+tower-http = { version = "0.6.8", features = ["compression-full", "fs", "trace", "timeout", "set-header"] }
 yaml_serde = "0.10.4"
+tower = "0.5.3"
+mime_guess = "2.0.5"
+tokio-util = "0.7.18"

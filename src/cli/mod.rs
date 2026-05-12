@@ -1,8 +1,10 @@
 mod csv;
+mod http;
 mod passwd;
 
 pub use self::{
     csv::{CsvOpts, OutputFormat},
+    http::HttpSubCommand,
     passwd::GenPasswdOpts,
 };
 use clap::Parser;
@@ -24,4 +26,7 @@ pub enum SubCommand {
 
     #[command(name = "passwd", about = "Generate a passwd")]
     Passwd(GenPasswdOpts),
+
+    #[command(subcommand)]
+    Http(HttpSubCommand),
 }
