@@ -1,4 +1,5 @@
 [default.extend-words]
+urlsafe = "urlsafe"
 
 [files]
 extend-exclude = ["README.md", "CHANGELOG.md", "notebooks/*"]

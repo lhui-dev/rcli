@@ -1,8 +1,10 @@
+mod base64;
 mod csv;
 mod http;
 mod passwd;
 
 pub use self::{
+    base64::{Base64Format, Base64SubCommand},
     csv::{CsvOpts, OutputFormat},
     http::HttpSubCommand,
     passwd::GenPasswdOpts,
@@ -29,4 +31,7 @@ pub enum SubCommand {
 
     #[command(subcommand)]
     Http(HttpSubCommand),
+
+    #[command(subcommand, name = "base64", about = "Base64 encode/decode")]
+    Base64(Base64SubCommand),
 }
